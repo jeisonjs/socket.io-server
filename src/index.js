@@ -26,15 +26,13 @@ io.on('connection', socket => {
     }
 
 
-    socket.on('getDoc', docId => {
-        console.log('getDoc')        
+    socket.on('getDoc', docId => {      
         safeJoin(docId)
         socket.emit('document', documents[docId])
     })
 
 
-    socket.on('addDoc', doc => {
-        console.log('addDoc')        
+    socket.on('addDoc', doc => {     
         documents[doc.id] = doc
         safeJoin(doc.id)
         io.emit('documents', Object.keys(documents))
@@ -42,8 +40,7 @@ io.on('connection', socket => {
     })
 
 
-    socket.on('editDoc', doc => {
-        console.log('editDoc')        
+    socket.on('editDoc', doc => {      
         documents[doc.id] = doc
         socket.to(doc.id).emit('document', doc)
     })
@@ -53,4 +50,24 @@ io.on('connection', socket => {
 })
 
 
+const nsp = io.of('/aavv/credit')
+nsp.on('connection', socket => {    
+    console.log('>... connected to: /aavv/credit')
+
+    socket.on('getCredit', aavvId => {
+        console.log(aavvId.msg)
+        socket.join(aavvId.room)
+        
+        getAllCreditsByAavvId(aavvId.room).then(data => {
+            nsp.to(aavvId.room).emit('hi', data);  
+        })
+    })
+})
+
+
 server.listen(port, () => console.log(`Listening on port ${port}`));
+
+
+async function getAllCreditsByAavvId(aavvId) {
+    return await axios.get(`https://jsonplaceholder.typicode.com/users/${aavvId}`).then(response => response.data)
+}
