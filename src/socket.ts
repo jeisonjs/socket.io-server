@@ -1,16 +1,25 @@
-import { Server, Socket } from "socket.io";
+import * as socketIo from "socket.io";
+import * as http from "http";
+import AavvController from "./namespaces/aavv.controller";
 
-export default (io: Server) => {
-    const nsp = io.of('/aavv/credit')
+class SocketService {
+    private io: SocketIO.Server;
+    private namespaces = [
+        AavvController
+    ]
 
-    nsp.on('connection', socket => {    
-        console.log('>... connected to: /aavv/credit')
+    constructor(server: http.Server) {
+        this.io = socketIo(server)
+        this.io.origins("*:*");
 
-        socket.on('getCredit', aavvId => {
-            console.log(aavvId.msg)
-            socket.join(aavvId.room)
-            
-            // Implements function
-        })
-    })
+        this.initializeNamespaces(this.namespaces);
+    }
+
+    private initializeNamespaces(namespaces: any) {
+        namespaces.forEach((namespace: any) => {
+            new namespace(this.io)
+        });
+    }
 }
+
+export default SocketService

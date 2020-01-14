@@ -1,0 +1,22 @@
+{
+  "config": {
+    "target": "http://localhost:4444/aavv/credit",
+    "phases": {
+      "duration": 3600,
+      "arrivalRate": 5
+    }
+  },
+  "scenarios": {
+    "name": "Connect and send a bunch of messages",
+    "flow": {
+      "loop": {
+        "emit": {
+          "channel": "send message",
+          "data": "hello world!"
+        },
+        "think": 1,
+        "count": 50
+      }
+    }
+  }
+}

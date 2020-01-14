@@ -1,0 +1,9 @@
+https://alligator.io/angular/socket-io/
+https://medium.com/@rossbulat/typescript-live-chat-express-and-socket-io-server-setup-8d24fe13d00
+https://socket.io/docs/rooms-and-namespaces/
+https://github.com/codigofacilito/express-typescript/blob/master/src/router/router.ts
+https://www.agiratech.com/real-time-apps-typescript-integrating-web-sockets-node-angular/
+https://www.valentinog.com/blog/socket-react/
+https://developer.okta.com/blog/2019/05/07/nodejs-typescript-api
+https://wanago.io/2018/12/03/typescript-express-tutorial-routing-controllers-middleware/
+https://qiita.com/okumurakengo/items/ca8ff09063c73eb2e75c

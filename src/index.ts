@@ -1,11 +1,12 @@
 import * as express from "express";
 import * as http from "http";
-import * as socketIo from "socket.io";
+import * as cors from "cors";
 import router from "./router/router";
-import initializeSocketIO from "./socket";
+import SocketService from "./socket";
 
 
 const app = express()
+app.use(cors)
 app.use(router)
 
 // http server
@@ -13,8 +14,7 @@ const server = http.createServer(app)
 const port = process.env.PORT || 4444
 
 // socket.io server
-const io = socketIo(server)
-initializeSocketIO(io)
+new SocketService(server)
 
 
 server.listen(port, () => console.log(`Listening on port ${port}`));
