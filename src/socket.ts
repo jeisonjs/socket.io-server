@@ -1,11 +1,11 @@
 import * as socketIo from "socket.io";
 import * as http from "http";
-import AavvController from "./namespaces/aavv.controller";
+import VicanderController from "./namespaces/vicander.controller";
 
 class SocketService {
     private io: SocketIO.Server;
     private namespaces = [
-        AavvController
+        VicanderController
     ]
 
     constructor(server: http.Server) {
