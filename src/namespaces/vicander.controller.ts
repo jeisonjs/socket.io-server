@@ -35,9 +35,7 @@ class VicanderController implements Controller {
             socket.on('aavv/credits/update', data => {
                 let room = data.aavvId
 
-                getAllCreditsByAavvId({aavvId: data.aavvId})
-                    .then(data => socket.to(room).emit('aavv/credits', data.data))
-                    .catch(error => socket.to(room).emit('aavv/credits/errors', error))
+                socket.to(room).emit('aavv/credits', data.payload)
             })
 
 

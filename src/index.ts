@@ -6,12 +6,12 @@ import SocketService from "./socket";
 
 
 const app = express()
-app.use(cors)
+// app.use(cors)
 app.use(router)
 
 // http server
 const server = http.createServer(app)
-const port = process.env.PORT || 4444
+const port = process.env.PORT || 3000
 
 // socket.io server
 new SocketService(server)
