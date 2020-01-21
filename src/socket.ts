@@ -1,5 +1,5 @@
-import * as socketIo from "socket.io";
-import * as http from "http";
+import socketIo from "socket.io";
+import { Server } from "http";
 import VicanderController from "./namespaces/vicander.controller";
 
 class SocketService {
@@ -8,7 +8,7 @@ class SocketService {
         VicanderController
     ]
 
-    constructor(server: http.Server) {
+    constructor(server: Server) {
         this.io = socketIo(server)
         this.io.origins("*:*");
 

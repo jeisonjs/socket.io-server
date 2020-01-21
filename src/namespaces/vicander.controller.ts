@@ -1,6 +1,6 @@
 import { Server, Socket, Namespace } from "socket.io";
 import Controller from "../interfaces/controller.interface";
-import { getAllCreditsByAavvId } from "../service";
+import { getAllCreditsByAavvId } from "../services/vicander.service";
 
 class VicanderController implements Controller {
     public io: Server

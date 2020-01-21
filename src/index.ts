@@ -1,22 +1,32 @@
-import * as express from "express";
-import * as http from "http";
+import express, { Application } from "express";
+import http from "http";
+import 'dotenv/config';
 import * as cors from "cors";
-import router from "./router/router";
+import router from "./routes";
 import SocketService from "./socket";
 
 
-const app = express()
-// app.use(cors)
+/**
+ * App Variables
+ */
+const {
+    PORT
+} = process.env;
+
+
+/**
+ *  App Configuration
+ */
+const app: Application = express()
 app.use(router)
 
-// http server
 const server = http.createServer(app)
-const port = process.env.PORT || 3000
-
-// socket.io server
 new SocketService(server)
 
 
-server.listen(port, () => console.log(`Listening on port ${port}`));
+/**
+ * Server Activation
+ */
+server.listen(PORT, () => console.log(`Listening on port ${PORT}`));
 
 
