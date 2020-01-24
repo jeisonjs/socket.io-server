@@ -4,15 +4,13 @@ services:
   app:
     container_name: socket.io-server
     restart: always
+    image: socket.io-server:0.1
     build:
       context: .
       dockerfile: Dockerfile
+    volumes:
+      - ./.env:/app/.env
+      - ./package.json:/app/package.json
+      - ./package-lock.json:/app/package-lock.json
     ports:
       - "3000:3000"
-    volumes:
-      - .:/usr/src/app
-      - /usr/src/app/node_modules
-    command: >
-      /bin/bash -c "
-      npm run build && npm run start
-      "

@@ -1,10 +1,12 @@
 import express, { Application } from "express";
 import http from "http";
-import 'dotenv/config';
-import * as cors from "cors";
+import dotenv from 'dotenv';
 import router from "./routes";
 import SocketService from "./socket";
 
+const env = dotenv.config()
+console.log(env);
+if (env.error) throw env.error
 
 /**
  * App Variables

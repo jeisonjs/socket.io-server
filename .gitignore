@@ -47,4 +47,5 @@ testem.log
 Thumbs.db
 #docker
 
+dist
 .env
